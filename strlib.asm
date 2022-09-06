@@ -1,6 +1,8 @@
 
 ; Arguments
-; rax   rdi   rsi   rdx   r10   r8    r9 
+; rdi   rsi   rdx   r10   r8    r9 
+; Return value
+; rax   
 
 
 ;------------------------------------------
@@ -16,9 +18,9 @@ strlen:
             cmp     byte [rax], 0   ; If we have a null byte, exit
             je      .exit           ;
             inc     rcx             ; increment our counter
-            inc     rax
+            inc     rax             ; increment *str addr
             jmp     .loop
 .exit:      
-            mov     rax, rcx
+            mov     rax, rcx        ; put the counter result in return register
             pop     rcx
             ret
